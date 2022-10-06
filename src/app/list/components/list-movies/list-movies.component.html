@@ -1,1 +1,85 @@
-<p>list-movies works!</p>
+<div class="card">
+
+  <div class="card-title">
+    List movies
+  </div>
+
+  <div class="card-content">
+
+
+    <table>
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>
+            <div class="flex direction-column">
+              <div class="flex center flex-1">
+                Year
+              </div>
+              <div class="flex center flex-1">
+                <input id="movieYear" formControlName="movieYear" type="text" label="Filter by year" min="1900"
+                  max="2999" maxlength="4" placeholder="Search by year">
+              </div>
+            </div>
+          </th>
+          <th>Title</th>
+          <th>
+            Winner
+            <br />
+            <select name="select">
+              <option  selected>Yes/No</option>
+              <option value="valor1">Yes</option>
+              <option value="valor2">No</option>
+            </select>
+          </th>
+        </tr>
+        <tr>
+          <td>1986</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>1990</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>2015</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>2015</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <div class="flex center">
+              <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+
+    </table>
+
+
+  </div>
+
+</div>

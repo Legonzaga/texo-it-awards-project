@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { ListRoutingModule } from './list-routing.module';
 import { ListMoviesComponent } from './components/list-movies/list-movies.component';
+import { SharedModule } from 'src/shared/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +15,9 @@ import { ListMoviesComponent } from './components/list-movies/list-movies.compon
   ],
   imports: [
     CommonModule,
-    ListRoutingModule
+    ListRoutingModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ListModule { }

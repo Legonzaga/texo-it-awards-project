@@ -12,6 +12,7 @@ $subheading-1-size: 24px;
   padding: 0px;
   margin: 0px;
   font-family: 'Roboto', sans-serif;
+  // border: solid 1px red; // to debug
 }
 
 #header {
@@ -27,9 +28,9 @@ $subheading-1-size: 24px;
   height:90vh;
 }
 
-#content {
-  //backgroun d-color: purple;
-}
+// #content {
+
+// }
 
 
 a:link {
@@ -38,15 +39,25 @@ a:link {
   cursor: pointer;
 }
 
-a:visited {
+
+a:active {
   text-decoration: none;
-  color: #141414;
+  color: dodgerblue;
   cursor: pointer;
 }
+
+.active-link {
+ text-decoration: none;
+  color: dodgerblue !important;
+  cursor: pointer;
+}
+
+/* Font Styles */
 .body-1 {
   font-size: $body-size;
   font-weight: 400;
 }
+
 .subheading-1 {
   font-size: $subheading-1-size;
   text-transform: uppercase;

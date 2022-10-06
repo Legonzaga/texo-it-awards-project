@@ -1,1 +1,49 @@
-<p>list-movie-winners-year works!</p>
+<div class="card">
+
+  <div class="card-title">
+    List movies winners by year
+  </div>
+
+  <div class="card-content">
+
+    <div id="form-container">
+
+      <form [formGroup]="searchMovieForm">
+
+        <div class="flex v-align-center">
+
+          <input id="movieYear" formControlName="movieYear" type="text" label="Search by year" min="1900" max="2999" maxlength="4" placeholder="Search by year" >
+
+          <button id="search-button" type="button"  (click)="searchMovieByYear()" [ngClass]="{ 'btn-disabled': !searchMovieForm.valid }" [disabled]="!searchMovieForm.valid || isLoading">
+            <span class="material-symbols-outlined">
+              search
+            </span>
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+    <div id="winners-list">
+      <table>
+        <tbody>
+          <tr>
+            <th>Id</th>
+            <th>Year</th>
+            <th>Title</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

@@ -6,6 +6,8 @@ import { ListYearMultipleWinnersComponent } from './components/list-year-multipl
 import { TopStudioWinnersComponent } from './components/top-studio-winners/top-studio-winners.component';
 import { IntervalBetweenWinsComponent } from './components/interval-between-wins/interval-between-wins.component';
 import { ListMovieWinnersYearComponent } from './components/list-movie-winners-year/list-movie-winners-year.component';
+import { SharedModule } from 'src/shared/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +21,10 @@ import { ListMovieWinnersYearComponent } from './components/list-movie-winners-y
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

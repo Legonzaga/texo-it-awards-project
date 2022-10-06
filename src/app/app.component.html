@@ -7,9 +7,9 @@
   <div class="flex flex-row">
 
     <div id="menu" class="flex-1">
-      <a routerLink="">Dashboard</a>
+      <a routerLink="dashboard" [routerLinkActive]="['active-link']">Dashboard</a>
       <br />
-      <a routerLink="/list">List</a>
+      <a routerLink="/list" [routerLinkActive]="['active-link']">List</a>
     </div>
 
     <div id="content" class="flex-6 v-align-center">

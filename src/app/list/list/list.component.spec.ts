@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/shared/shared/shared.module';
 
 import { ListComponent } from './list.component';
 
@@ -8,7 +10,10 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ListComponent],
+      imports: [
+        SharedModule,
+      ]
     })
     .compileComponents();
   });
