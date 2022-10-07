@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Movie } from 'src/core/models/movie';
 import { Paginator } from 'src/core/models/search';
@@ -52,7 +52,8 @@ export class ListMoviesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private movieService: MovieService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
 
     this.paginator.pageNumber = this.route.snapshot.params['pageNumber'];
@@ -186,6 +187,8 @@ export class ListMoviesComponent implements OnInit {
       this.listMovies(this.paginator, this.urlSuffix)
 
     }
+
+    this.router.navigate(['/list', this.paginator.pageNumber ]);
   }
 
   prevPage() {

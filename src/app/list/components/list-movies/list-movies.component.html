@@ -45,13 +45,13 @@
             <div class="flex center">
               <div class="pagination v-align-center">
 
-                <a routerLink="/list/0" (click)="selectPage(0)"  *ngIf="paginator.pageNumber > 0">
+                <a routerLink="/list/0" (click)="selectPage(0)"  *ngIf="paginator.pageNumber > 2">
                   <span class="material-symbols-outlined">
                     first_page
                   </span>
                 </a>
 
-                <a href="#" [routerLink]="['/list', paginator.pageNumber]" (click)="prevPage()"  *ngIf="paginator.pageNumber > 0">
+                <a href="#" [routerLink]="['/list', paginator.pageNumber]" (click)="prevPage()"  *ngIf="paginator.pageNumber > 2">
                   <span class="material-symbols-outlined">
                     chevron_left
                   </span>
