@@ -3,10 +3,15 @@
  This project intends develop an interface to enable reading the list of nominees and winners
 in the Worst Film category at the Golden Raspberry Awards.
 
-If you wanna see project hosted, please `<a href="https://master.d9lmjiyowowjw.amplifyapp.com/" _blank>click here</a>`
+If you wanna see project hosted, please <a href="https://master.d9lmjiyowowjw.amplifyapp.com/" _blank>click here</a>.
 
+If not, you can clone the project and follow the steps below in your machine!
 
+------------------------
+Author: Lean Vasconcellos
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+
+------------------------
 
 ## Development server
 
