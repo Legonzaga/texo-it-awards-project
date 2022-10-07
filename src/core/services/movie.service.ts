@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Interval } from '../models/interval';
+import { StudioList } from '../models/studios';
+import { YearMultipleWinner } from '../models/year-multiple-winner';
 import { environment } from './../../environments/environment.prod';
 import { Movie } from './../models/movie';
 import { Pageable, SearchMovie } from './../models/search';
@@ -14,7 +16,6 @@ export class MovieService {
   constructor(
     private http: HttpClient
   ) { }
-
 
   /**
    * * Lists movies winners by year
@@ -43,6 +44,18 @@ export class MovieService {
    */
   producersWinInterval(): Observable<Interval> {
     return this.http.get<Interval>(environment.apiUrl + `?projection=max-min-win-interval-for-producers`);
+  }
+
+  /**
+   * Lists studios winners
+   * @returns
+   */
+  listWinnersStudios(): Observable<StudioList> {
+    return this.http.get<StudioList>(environment.apiUrl + `?projection=studios-with-win-count`);
+  }
+
+  listYearsWithMultipleWinners(): Observable<YearMultipleWinner> {
+    return this.http.get<YearMultipleWinner>(environment.apiUrl + `?projection=years-with-multiple-winners`);
   }
 
 

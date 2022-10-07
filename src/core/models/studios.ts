@@ -1,11 +1,11 @@
 
-export interface Studio {
-  name: string;
-  winCount: number;
+export class Studio {
+  name!: string;
+  winCount!: number;
 }
 
-export interface RootObject {
-  studios: Studio[];
+export class StudioList {
+  studios!: Studio[];
 }
 
 
