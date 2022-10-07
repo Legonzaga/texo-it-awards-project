@@ -198,26 +198,53 @@ export class ListMoviesComponent implements OnInit {
 
   filtering() {
 
+    let winner = this.filterByWinner.value ;
+
+    let movieYear = this.filter.value;
+
     this.filterResult = [];
 
-    for (let m of this.movies) {
+    this.paginator.pageNumber = 0;
 
-      if (this.filter.value === m.year.toString()) {
-        this.filterResult.push(m);
-      }
+    if(movieYear.length >= 4 && winner !== 'default') {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    } else {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, null, movieYear);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
     }
 
   }
 
   filteringByWinner() {
 
+    let winner = this.filterByWinner.value ;
+
+    let movieYear = this.filter.value;
+
+
     this.filterResult = [];
 
-    for (let m of this.movies) {
+    this.paginator.pageNumber = 0;
 
-      if (this.filterByWinner.value === m.winner.toString()) {
-        this.filterResult.push(m);
-      }
+    if(winner !== 'default' && movieYear.length >= 4) {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    } else {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
     }
 
   }
