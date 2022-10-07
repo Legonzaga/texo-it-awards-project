@@ -54,7 +54,7 @@ export class MovieService {
     return this.http.get<StudioList>(environment.apiUrl + `?projection=studios-with-win-count`);
   }
 
-  listYearsWithMultipleWinners(): Observable<YearMultipleWinner> {
+  listYearsWithMostWinners(): Observable<YearMultipleWinner> {
     return this.http.get<YearMultipleWinner>(environment.apiUrl + `?projection=years-with-multiple-winners`);
   }
 
