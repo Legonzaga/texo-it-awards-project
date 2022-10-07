@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/core/shared/shared.module';
 
 import { IntervalBetweenWinsComponent } from './interval-between-wins.component';
 
@@ -8,7 +9,10 @@ describe('IntervalBetweenWinsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IntervalBetweenWinsComponent ]
+      declarations: [IntervalBetweenWinsComponent],
+      imports: [
+        SharedModule
+      ]
     })
     .compileComponents();
   });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/core/shared/shared.module';
 
 import { TopStudioWinnersComponent } from './top-studio-winners.component';
 
@@ -8,7 +9,10 @@ describe('TopStudioWinnersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopStudioWinnersComponent ]
+      declarations: [ TopStudioWinnersComponent ],
+      imports: [
+        SharedModule
+      ]
     })
     .compileComponents();
   });

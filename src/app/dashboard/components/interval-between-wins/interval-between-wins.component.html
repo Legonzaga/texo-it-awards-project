@@ -19,10 +19,10 @@
             <th>Follownig Year</th>
           </tr>
           <tr *ngFor="let p of producerWinInterval.max">
-            <td>{{ p.producer }}</td>
-            <td>{{ p.interval }}</td>
-            <td>{{ p.previousWin }}</td>
-            <td>{{ p.followingWin }}</td>
+            <td>{{ p.producer || 'N/A' }}</td>
+            <td>{{ p.interval || 'N/A' }}</td>
+            <td>{{ p.previousWin || 'N/A' }}</td>
+            <td>{{ p.followingWin || 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

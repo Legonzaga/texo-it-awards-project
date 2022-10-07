@@ -10,7 +10,7 @@ import { MovieService } from 'src/core/services/movie.service';
 })
 export class IntervalBetweenWinsComponent implements OnInit {
 
-  producerWinInterval!: Interval;
+  producerWinInterval: Interval = new Interval();
 
   constructor(
     private http: HttpClient,
@@ -26,8 +26,6 @@ export class IntervalBetweenWinsComponent implements OnInit {
     this.movieService.producersWinInterval().subscribe({
       next: (interval) => {
         this.producerWinInterval = interval;
-        console.log(this.producerWinInterval);
-
       },
       error: (err) => {
         console.log();
