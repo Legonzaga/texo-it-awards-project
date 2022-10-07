@@ -173,10 +173,10 @@ export class ListMoviesComponent implements OnInit {
 
       this.paginator.pageNumber++;
 
-      if (winner !== 'default' && movieYear.length <= 4) {
+      if (winner !== 'default' && movieYear <= 1000) {
         this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
       }
-      else if (winner !== 'default' && movieYear.length >= 4) {
+      else if (winner !== 'default' && movieYear >= 1000) {
         this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
       }
       else {
@@ -198,10 +198,10 @@ export class ListMoviesComponent implements OnInit {
 
       this.paginator.pageNumber--;
 
-      if (winner !== 'default' && movieYear.length <= 4) {
+      if (winner !== 'default' && movieYear <= 1000) {
         this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
       }
-      else if (winner !== 'default' && movieYear.length >= 4) {
+      else if (winner !== 'default' && movieYear >= 1000) {
         this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
       } else {
         this.urlSuffix = this.urlBuilder(this.paginator, null, null);
@@ -222,10 +222,10 @@ export class ListMoviesComponent implements OnInit {
 
     this.paginator.pageNumber = page || 0;
 
-    if (winner !== 'default' && movieYear.length <= 4) {
+    if (winner !== 'default' && movieYear <= 1000) {
       this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
     }
-    else if (winner !== 'default' && movieYear.length >= 4) {
+    else if (winner !== 'default' && movieYear >= 1000) {
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
     } else {
       this.urlSuffix = this.urlBuilder(this.paginator, null, null);
@@ -238,17 +238,27 @@ export class ListMoviesComponent implements OnInit {
 
     let winner = this.filterByWinner.value;
 
-    let movieYear = this.filter.value;
+    let movieYear = parseInt(this.filter.value);
 
-    if (typeof (movieYear) !== 'number') {
+    console.log(movieYear);
+
+
+    console.log("movieYear ", movieYear);
+
+
+    if (typeof (movieYear) !== 'number' && movieYear > 0) {
+
+      this.filter.setValue('');
+
       this.hideYearTypeError();
+
     }
 
     this.filterResult = [];
 
     this.paginator.pageNumber = 0;
 
-    if (movieYear.length >= 4 && winner !== 'default') {
+    if (movieYear >= 1000 && winner !== 'default') {
 
       this.filter.disable();
 
@@ -259,13 +269,24 @@ export class ListMoviesComponent implements OnInit {
       this.listMovies(this.paginator, this.urlSuffix);
 
     }
-    else if (movieYear.length >= 4 && winner === 'default') {
+    else if (movieYear >= 1000 && winner === 'default') {
 
       this.filter.disable();
 
       this.filterByWinner.disable();
 
       this.urlSuffix = this.urlBuilder(this.paginator, null, movieYear);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    }
+    else if (isNaN(movieYear) && winner === 'default') {
+
+      this.filter.disable();
+
+      this.filterByWinner.disable();
+
+      this.urlSuffix = this.urlBuilder(this.paginator, null, null);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
@@ -299,28 +320,28 @@ export class ListMoviesComponent implements OnInit {
 
     this.paginator.pageNumber = 0;
 
-    if (winner !== 'default' && movieYear.length >= 4) {
+    if (winner !== 'default' && movieYear >= 1000) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
     }
-    else if (winner !== 'default' && movieYear.length <= 4) {
+    else if (winner !== 'default' && movieYear <= 1000) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
     }
-    else if (winner === 'default' && movieYear.length >= 4) {
+    else if (winner === 'default' && movieYear >= 1000) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, null, movieYear);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
     }
-    else if (winner === 'default' && movieYear.length <= 4) {
+    else if (winner === 'default' && movieYear <= 1000) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, null, null);
 
