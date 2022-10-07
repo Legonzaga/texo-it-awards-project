@@ -9,6 +9,7 @@ If not, you can clone the project and follow the steps below in your machine!
 
 ------------------------
 Author: Lean Vasconcellos
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
 ------------------------
