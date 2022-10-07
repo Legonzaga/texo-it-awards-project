@@ -44,13 +44,13 @@
             <div class="flex center">
               <div class="pagination v-align-center">
 
-                <a routerLink="/list/0" (click)="selectPage(0)">
+                <a routerLink="/list/0" (click)="selectPage(0)"  *ngIf="paginator.pageNumber > 2">
                   <span class="material-symbols-outlined">
                     first_page
                   </span>
                 </a>
 
-                <a href="#" [routerLink]="['/list', paginator.pageNumber]" (click)="prevPage()">
+                <a href="#" [routerLink]="['/list', paginator.pageNumber]" (click)="prevPage()"  *ngIf="paginator.pageNumber > 2">
                   <span class="material-symbols-outlined">
                     chevron_left
                   </span>
@@ -62,13 +62,13 @@
                   </span>
                 </span>
 
-                <a href="#" [routerLink]="['/list/', paginator.pageNumber]" (click)="nextPage()">
+                <a href="#" [routerLink]="['/list/', paginator.pageNumber]" (click)="nextPage()" *ngIf="paginator.pageNumber < paginationItems.link.length - 1">
                   <span class="material-symbols-outlined">
                     chevron_right
                   </span>
                 </a>
 
-                <a href="#" [routerLink]="'/list/' + paginator.pageNumber"
+                <a href="#" [routerLink]="'/list/' + paginator.pageNumber" *ngIf="paginator.pageNumber < paginationItems.link.length - 1"
                   (click)="selectPage(paginationItems.link.length - 1)">
                   <span class="material-symbols-outlined">
                     last_page
