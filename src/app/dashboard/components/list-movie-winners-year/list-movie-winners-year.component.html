@@ -16,7 +16,7 @@
             maxlength="4" placeholder="Search by year">
 
           <button id="search-button" type="button" *ngIf="!isLoading" (click)="searchMovieByYear()"
-            [ngClass]="{ 'btn-disabled': !searchMovieForm.valid }" [disabled]="!searchMovieForm.valid || isLoading">
+            [ngClass]="{ 'btn-disabled': !searchMovieForm.valid }">
             <span class="material-symbols-outlined">
               search
             </span>

@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { Movie } from 'src/core/models/movie';
-import { Pageable } from 'src/core/models/search';
+import { Paginator } from 'src/core/models/search';
 import { MovieService } from 'src/core/services/movie.service';
 
 export interface PaginableItens {
@@ -21,7 +21,7 @@ export class ListMoviesComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  paginator: Pageable = new Pageable();
+  paginator: Paginator = new Paginator();
 
   previusPage!: number;
 
@@ -46,6 +46,8 @@ export class ListMoviesComponent implements OnInit {
 
   filterResult: Movie[] = [];
 
+  showYearErroType: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -55,15 +57,9 @@ export class ListMoviesComponent implements OnInit {
 
     this.paginator.pageNumber = this.route.snapshot.params['pageNumber'];
 
-    console.log('Page number ', this.paginator.pageNumber);
-
     this.paginationItems.link = [''];
 
     this.paginationItems.pageNumber = 0;
-
-    console.log(this.filter.value);
-
-
   }
 
   ngOnInit(): void {
@@ -81,7 +77,7 @@ export class ListMoviesComponent implements OnInit {
   }
 
 
-  listMovies(search: Pageable | null, url: string | '') {
+  listMovies(search: Paginator | null, url: string | '') {
 
     this.isLoading = true;
 
@@ -100,9 +96,13 @@ export class ListMoviesComponent implements OnInit {
       error: (err) => {
         console.log(err);
         this.isLoading = false;
+        this.filter.enable();
+        this.filterByWinner.enable();
       },
       complete: () => {
         this.isLoading = false;
+        this.filter.enable();
+        this.filterByWinner.enable();
       }
     });
 
@@ -115,9 +115,9 @@ export class ListMoviesComponent implements OnInit {
    * @param year : number => movie year
    * @returns : string => An URL to listMovies method
    */
-  urlBuilder(pageable: Pageable | null, winner: boolean | null, year: number | null): string {
+  urlBuilder(pageable: Paginator | null, winner: boolean | null, year: number | null): string {
 
-    let pagination = new Pageable();
+    let pagination = new Paginator();
 
     pagination.pageNumber = 0;
 
@@ -146,6 +146,8 @@ export class ListMoviesComponent implements OnInit {
     return url;
   }
 
+
+
   settingPagination(totalPages: number) {
 
     this.paginationItems.link = [];
@@ -160,13 +162,26 @@ export class ListMoviesComponent implements OnInit {
 
   }
 
+
   nextPage() {
+
+    let winner = this.filterByWinner.value;
+
+    let movieYear = this.filter.value;
 
     if (this.paginator.pageNumber < this.paginationItems.pageNumber) {
 
       this.paginator.pageNumber++;
 
-      this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+      if (winner !== 'default' && movieYear.length <= 4) {
+        this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
+      }
+      else if (winner !== 'default' && movieYear.length >= 4) {
+        this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
+      }
+      else {
+        this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+      }
 
       this.listMovies(this.paginator, this.urlSuffix)
 
@@ -175,11 +190,23 @@ export class ListMoviesComponent implements OnInit {
 
   prevPage() {
 
+    let winner = this.filterByWinner.value;
+
+    let movieYear = this.filter.value;
+
     if (this.paginator.pageNumber > 0) {
 
       this.paginator.pageNumber--;
 
-      this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+      if (winner !== 'default' && movieYear.length <= 4) {
+        this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
+      }
+      else if (winner !== 'default' && movieYear.length >= 4) {
+        this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
+      } else {
+        this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+      }
+
 
       this.listMovies(this.paginator, this.urlSuffix)
 
@@ -189,57 +216,118 @@ export class ListMoviesComponent implements OnInit {
 
   selectPage(page: number | null) {
 
+    let winner = this.filterByWinner.value;
+
+    let movieYear = this.filter.value;
+
     this.paginator.pageNumber = page || 0;
 
-    this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+    if (winner !== 'default' && movieYear.length <= 4) {
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
+    }
+    else if (winner !== 'default' && movieYear.length >= 4) {
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
+    } else {
+      this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+    }
 
     this.listMovies(this.paginator, this.urlSuffix)
   }
 
   filtering() {
 
-    let winner = this.filterByWinner.value ;
+    let winner = this.filterByWinner.value;
 
     let movieYear = this.filter.value;
+
+    if (typeof (movieYear) !== 'number') {
+      this.hideYearTypeError();
+    }
 
     this.filterResult = [];
 
     this.paginator.pageNumber = 0;
 
-    if(movieYear.length >= 4 && winner !== 'default') {
+    if (movieYear.length >= 4 && winner !== 'default') {
+
+      this.filter.disable();
+
+      this.filterByWinner.disable();
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
-    } else {
+    }
+    else if (movieYear.length >= 4 && winner === 'default') {
+
+      this.filter.disable();
+
+      this.filterByWinner.disable();
 
       this.urlSuffix = this.urlBuilder(this.paginator, null, movieYear);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
     }
+    else {
 
+      this.filter.enable();
+
+      this.filterByWinner.enable();
+
+    }
+
+  }
+
+  hideYearTypeError() {
+
+    this.showYearErroType = true;
+
+    setTimeout(() => {
+      this.showYearErroType = false;
+    }, 3000);
   }
 
   filteringByWinner() {
 
-    let winner = this.filterByWinner.value ;
+    let winner = this.filterByWinner.value;
 
     let movieYear = this.filter.value;
-
 
     this.filterResult = [];
 
     this.paginator.pageNumber = 0;
 
-    if(winner !== 'default' && movieYear.length >= 4) {
+    if (winner !== 'default' && movieYear.length >= 4) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
 
       this.listMovies(this.paginator, this.urlSuffix);
 
-    } else {
+    }
+    else if (winner !== 'default' && movieYear.length <= 4) {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    }
+    else if (winner === 'default' && movieYear.length >= 4) {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, null, movieYear);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    }
+    else if (winner === 'default' && movieYear.length <= 4) {
+
+      this.urlSuffix = this.urlBuilder(this.paginator, null, null);
+
+      this.listMovies(this.paginator, this.urlSuffix);
+
+    }
+    else {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, null);
 
@@ -248,8 +336,5 @@ export class ListMoviesComponent implements OnInit {
     }
 
   }
-
-
-
 
 }

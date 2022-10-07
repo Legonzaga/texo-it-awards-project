@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SearchMovie, Paginator } from 'src/core/models/search';
 import { SharedModule } from 'src/core/shared/shared.module';
 import { ListMoviesComponent } from './list-movies.component';
 
@@ -16,7 +17,7 @@ describe('ListMoviesComponent', () => {
         RouterTestingModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -28,4 +29,5 @@ describe('ListMoviesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

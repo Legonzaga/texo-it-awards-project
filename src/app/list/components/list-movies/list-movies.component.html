@@ -15,10 +15,11 @@
               <div class="flex center flex-1">
                 Year
               </div>
-              <div class="flex center flex-1">
-                <input id="movieYear" type="text" label="Filter by year" min="1900" max="2999" maxlength="4"
-                  placeholder="Filter by year" [formControl]="filter" (ngModelChange)="filtering()" [disabled]="isLoading">
+              <div class="flex center flex-1 column">
+                <input id="movieYear" type="number" label="Filter by year" min="1900" max="2999" maxlength="4"
+                  placeholder="Filter by year" [formControl]="filter" (ngModelChange)="filtering()">
               </div>
+              <div class="error-msg" *ngIf="showYearErroType">Please insert a number!</div>
             </div>
           </th>
           <th>Title</th>

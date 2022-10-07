@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DefaultSpinnerComponent } from './components/spinners/default-spinner/default-spinner.component';
+import { ErrorDialogComponent } from './components/dialog/error-dialog/error-dialog.component';
 
 
 const sharedModules = [
   ReactiveFormsModule,
   FormsModule,
-  HttpClientModule
+  HttpClientModule,
 ];
 
 const sharedComponets = [
@@ -19,7 +20,8 @@ const sharedComponets = [
 @NgModule({
   declarations: [
     DefaultSpinnerComponent,
-    ...sharedComponets
+    ...sharedComponets,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule,
