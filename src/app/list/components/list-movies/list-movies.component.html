@@ -18,16 +18,17 @@
               </div>
               <div class="flex center flex-1">
                 <input id="movieYear" type="text" label="Filter by year" min="1900" max="2999" maxlength="4"
-                  placeholder="Filter by year" [formControl]="filter" (change)="filtering()">
+                  placeholder="Filter by year" [formControl]="filter" (ngModelChange)="filtering()">
               </div>
             </div>
           </th>
           <th>Title</th>
           <th>
             Winner?
-            <select id="winner-select" name="select">
-              <option value="valor1">Yes</option>
-              <option value="valor2">No</option>
+            <select id="winner-select" name="select" [formControl]="filterByWinner" (change)="filteringByWinner()">
+              <option value="default" selected>Yes/No</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </select>
           </th>
         </tr>

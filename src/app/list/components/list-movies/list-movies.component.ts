@@ -42,6 +42,8 @@ export class ListMoviesComponent implements OnInit {
 
   filter: FormControl = new FormControl('');
 
+  filterByWinner: FormControl = new FormControl('');
+
   filterResult: Movie[] = [];
 
   constructor(
@@ -56,6 +58,7 @@ export class ListMoviesComponent implements OnInit {
     console.log('Page number ', this.paginator.pageNumber);
 
     this.paginationItems.link = [''];
+
     this.paginationItems.pageNumber = 0;
 
     console.log(this.filter.value);
@@ -72,6 +75,8 @@ export class ListMoviesComponent implements OnInit {
     this.urlSuffix = this.urlBuilder(this.paginator, null, null);
 
     this.listMovies(this.paginator, this.urlSuffix);
+
+    this.filterByWinner.setValue('default');
 
   }
 
@@ -197,18 +202,27 @@ export class ListMoviesComponent implements OnInit {
 
     for (let m of this.movies) {
 
-      console.log(this.filter.value, m.year);
-
-
       if (this.filter.value === m.year.toString()) {
         this.filterResult.push(m);
-        console.log('igual', m);
       }
     }
-    console.log(this.filterResult);
-
 
   }
+
+  filteringByWinner() {
+
+    this.filterResult = [];
+
+    for (let m of this.movies) {
+
+      if (this.filterByWinner.value === m.winner.toString()) {
+        this.filterResult.push(m);
+      }
+    }
+
+  }
+
+
 
 
 }
