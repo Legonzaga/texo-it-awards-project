@@ -45,9 +45,11 @@ export class ListMovieWinnersYearComponent implements OnInit {
     this.movieService.listMoviesWinnersByYear(movieYear).subscribe({
       next: (movies: Movie[]) => {
         this.winnersMovieList = movies;
+        this.isLoading = false;
       },
       error: (err) => {
         console.log(err);
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;

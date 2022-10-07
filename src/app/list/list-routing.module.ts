@@ -5,7 +5,7 @@ import { ListComponent } from './list/list.component';
 const routes: Routes = [
 
   {
-    path: '',
+    path: ':pageNumber',
     component: ListComponent
   }
 

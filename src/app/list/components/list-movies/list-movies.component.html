@@ -17,8 +17,8 @@
                 Year
               </div>
               <div class="flex center flex-1">
-                <input id="movieYear" formControlName="movieYear" type="text" label="Filter by year" min="1900"
-                  max="2999" maxlength="4" placeholder="Search by year">
+                <input id="movieYear" type="text" label="Filter by year" min="1900" max="2999" maxlength="4"
+                  placeholder="Filter by year" [formControl]="filter" (change)="filtering()">
               </div>
             </div>
           </th>
@@ -31,44 +31,50 @@
             </select>
           </th>
         </tr>
-        <tr>
-          <td>1986</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>1990</td>
-          <td>3</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>2015</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>2015</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
+        <tr *ngFor="let m of (filterResult.length > 0 ? filterResult : movies)">
+          <td>{{ m.id }}</td>
+          <td>{{ m.year }}</td>
+          <td>{{ m.title }}</td>
+          <td>{{ m.winner == true ? 'Yes' : 'No' }}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">
+          <td colspan="4" style="padding:0; margin:0;">
             <div class="flex center">
-              <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+              <div class="pagination v-align-center">
+
+                <a routerLink="/list/0" (click)="selectPage(0)">
+                  <span class="material-symbols-outlined">
+                    first_page
+                  </span>
+                </a>
+
+                <a href="#" [routerLink]="['/list', paginator.pageNumber]" (click)="prevPage()">
+                  <span class="material-symbols-outlined">
+                    chevron_left
+                  </span>
+                </a>
+
+                <span *ngFor="let p of paginationItems.link;  let i = index">
+                  <span *ngIf="paginator.pageNumber > (i-3) && paginator.pageNumber < (i+3)">
+                    <a [routerLink]="p" [routerLinkActive]="['active']" (click)="selectPage(i)">{{ i + 1}}</a>
+                  </span>
+                </span>
+
+                <a href="#" [routerLink]="['/list/', paginator.pageNumber]" (click)="nextPage()">
+                  <span class="material-symbols-outlined">
+                    chevron_right
+                  </span>
+                </a>
+
+                <a href="#" [routerLink]="'/list/' + paginator.pageNumber"
+                  (click)="selectPage(paginationItems.link.length - 1)">
+                  <span class="material-symbols-outlined">
+                    last_page
+                  </span>
+                </a>
+
               </div>
             </div>
           </td>

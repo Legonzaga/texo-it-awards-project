@@ -12,17 +12,17 @@
 
         <div class="flex v-align-center">
 
-          <input id="movieYear" formControlName="movieYear" type="number" label="Search by year" min="1900" max="2999" maxlength="4" placeholder="Search by year" >
+          <input id="movieYear" formControlName="movieYear" type="number" label="Search by year" min="1900" max="2999"
+            maxlength="4" placeholder="Search by year">
 
-          <button id="search-button" type="button" *ngIf="!isLoading" (click)="searchMovieByYear()" [ngClass]="{ 'btn-disabled': !searchMovieForm.valid }" [disabled]="!searchMovieForm.valid || isLoading">
+          <button id="search-button" type="button" *ngIf="!isLoading" (click)="searchMovieByYear()"
+            [ngClass]="{ 'btn-disabled': !searchMovieForm.valid }" [disabled]="!searchMovieForm.valid || isLoading">
             <span class="material-symbols-outlined">
               search
             </span>
           </button>
 
-          <span class="material-symbols-outlined" *ngIf="isLoading">
-            sync
-            </span>
+          <app-default-spinner *ngIf="isLoading"></app-default-spinner>
 
         </div>
 
