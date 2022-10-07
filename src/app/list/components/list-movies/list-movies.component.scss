@@ -4,7 +4,6 @@ th {
 }
 
 form {
-  border: solid 1px green;
   padding: 0;
 }
 
@@ -12,15 +11,24 @@ form {
   margin: 8px;
 }
 
-
+#winner-select {
+  margin-top: 8px;
+  padding: 0 8px;
+}
+.pagination .v-align-center {
+  padding: 0;
+}
 
 /* Pagination links */
 .pagination a {
-  color: black;
+  color: #141414;
   float: left;
   padding: 8px 12px;
   text-decoration: none;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
+  line-height: 24px;
+  margin: 0px;
+  height: 20px;
 }
 
 /* Style the active/current link */
@@ -30,4 +38,26 @@ form {
 }
 
 /* Add a grey background color on mouse-over */
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+  background-color: #666666;
+}
+
+.material-symbols-outlined {
+  padding: 0;
+  margin: 0;
+}
+
+#table-paginator {
+  padding: 0;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+
+.v-space-16 {
+  height: 16px;
+  width: 100%;
+}
+
+#spinner {
+  gap:8px;
+}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { ListRoutingModule } from './list-routing.module';
 import { ListMoviesComponent } from './components/list-movies/list-movies.component';
-import { SharedModule } from 'src/shared/shared/shared.module';
+import { SharedModule } from 'src/core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 

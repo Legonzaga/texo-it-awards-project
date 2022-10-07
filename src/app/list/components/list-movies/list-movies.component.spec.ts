@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from 'src/shared/shared/shared.module';
-
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from 'src/core/shared/shared.module';
 import { ListMoviesComponent } from './list-movies.component';
 
 describe('ListMoviesComponent', () => {
@@ -12,8 +13,8 @@ describe('ListMoviesComponent', () => {
       declarations: [ListMoviesComponent],
       imports: [
         SharedModule,
+        RouterTestingModule
       ]
-
     })
     .compileComponents();
   });

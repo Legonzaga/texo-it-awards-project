@@ -13,12 +13,16 @@
       <table>
         <tbody>
           <tr>
-            <th>Year</th>
-            <th>Win count</th>
+            <th>Producer</th>
+            <th>interval</th>
+            <th>Previous Year</th>
+            <th>Follownig Year</th>
           </tr>
-          <tr>
-            <td>1986</td>
-            <td>2</td>
+          <tr *ngFor="let p of producerWinInterval.max">
+            <td>{{ p.producer || 'N/A' }}</td>
+            <td>{{ p.interval || 'N/A' }}</td>
+            <td>{{ p.previousWin || 'N/A' }}</td>
+            <td>{{ p.followingWin || 'N/A' }}</td>
           </tr>
         </tbody>
       </table>
@@ -37,11 +41,11 @@
             <th>Previous year</th>
             <th>Following year</th>
           </tr>
-          <tr>
-            <td>Joel Silver</td>
-            <td>1</td>
-            <td>1990</td>
-            <td>1991</td>
+          <tr *ngFor="let p of producerWinInterval.min">
+            <td>{{ p.producer }}</td>
+            <td>{{ p.interval }}</td>
+            <td>{{ p.previousWin }}</td>
+            <td>{{ p.followingWin }}</td>
           </tr>
         </tbody>
       </table>

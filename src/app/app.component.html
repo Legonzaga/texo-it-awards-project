@@ -9,7 +9,7 @@
     <div id="menu" class="flex-1">
       <a routerLink="dashboard" [routerLinkActive]="['active-link']">Dashboard</a>
       <br />
-      <a routerLink="/list" [routerLinkActive]="['active-link']">List</a>
+      <a routerLink="/list/0" [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}">List</a>
     </div>
 
     <div id="content" class="flex-6 v-align-center">
