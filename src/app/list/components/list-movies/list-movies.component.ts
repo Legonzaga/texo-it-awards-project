@@ -55,15 +55,9 @@ export class ListMoviesComponent implements OnInit {
 
     this.paginator.pageNumber = this.route.snapshot.params['pageNumber'];
 
-    console.log('Page number ', this.paginator.pageNumber);
-
     this.paginationItems.link = [''];
 
     this.paginationItems.pageNumber = 0;
-
-    console.log(this.filter.value);
-
-
   }
 
   ngOnInit(): void {
@@ -146,6 +140,8 @@ export class ListMoviesComponent implements OnInit {
     return url;
   }
 
+
+
   settingPagination(totalPages: number) {
 
     this.paginationItems.link = [];
@@ -159,6 +155,7 @@ export class ListMoviesComponent implements OnInit {
     this.paginationItems.pageNumber = totalPages;
 
   }
+
 
   nextPage() {
 
@@ -198,7 +195,7 @@ export class ListMoviesComponent implements OnInit {
 
   filtering() {
 
-    let winner = this.filterByWinner.value ;
+    let winner = this.filterByWinner.value;
 
     let movieYear = this.filter.value;
 
@@ -206,7 +203,7 @@ export class ListMoviesComponent implements OnInit {
 
     this.paginator.pageNumber = 0;
 
-    if(movieYear.length >= 4 && winner !== 'default') {
+    if (movieYear.length >= 4 && winner !== 'default') {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
 
@@ -224,16 +221,15 @@ export class ListMoviesComponent implements OnInit {
 
   filteringByWinner() {
 
-    let winner = this.filterByWinner.value ;
+    let winner = this.filterByWinner.value;
 
     let movieYear = this.filter.value;
-
 
     this.filterResult = [];
 
     this.paginator.pageNumber = 0;
 
-    if(winner !== 'default' && movieYear.length >= 4) {
+    if (winner !== 'default' && movieYear.length >= 4) {
 
       this.urlSuffix = this.urlBuilder(this.paginator, winner, movieYear);
 

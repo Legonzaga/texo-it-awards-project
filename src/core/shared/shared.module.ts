@@ -9,7 +9,7 @@ import { DefaultSpinnerComponent } from './components/spinners/default-spinner/d
 const sharedModules = [
   ReactiveFormsModule,
   FormsModule,
-  HttpClientModule
+  HttpClientModule,
 ];
 
 const sharedComponets = [
