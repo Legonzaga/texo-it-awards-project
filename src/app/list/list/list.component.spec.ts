@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/shared/shared/shared.module';
+import { SharedModule } from 'src/core/shared/shared.module';
 
 import { ListComponent } from './list.component';
 

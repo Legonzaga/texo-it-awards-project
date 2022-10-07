@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from 'src/shared/shared/shared.module';
+import { SharedModule } from 'src/core/shared/shared.module';
 
 import { ListMoviesComponent } from './list-movies.component';
 
