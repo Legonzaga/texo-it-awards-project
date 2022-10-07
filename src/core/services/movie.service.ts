@@ -6,7 +6,7 @@ import { StudioList } from '../models/studios';
 import { YearMultipleWinner } from '../models/year-multiple-winner';
 import { environment } from './../../environments/environment.prod';
 import { Movie } from './../models/movie';
-import { Pageable, SearchMovie } from './../models/search';
+import { Paginator, SearchMovie } from './../models/search';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class MovieService {
 
   /**
    * * List movies given the parameters below:
-   * @param search : Pageable => Pagination attributes are setted here
+   * @param search : Paginator => Pagination attributes are setted here
    * @param winner : boolean => yes : true / no : false
    * @param year : number => Movie year
    * @returns : Observable<SearchMovie>

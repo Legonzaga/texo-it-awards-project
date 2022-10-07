@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SearchMovie, Pageable } from 'src/core/models/search';
+import { SearchMovie, Paginator } from 'src/core/models/search';
 import { SharedModule } from 'src/core/shared/shared.module';
 import { ListMoviesComponent } from './list-movies.component';
 

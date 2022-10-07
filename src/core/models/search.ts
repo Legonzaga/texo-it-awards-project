@@ -2,7 +2,7 @@ import { Movie } from "./movie";
 
 export class SearchMovie {
   content!: Movie[];
-  pageable!: Pageable;
+  pageable!: Paginator;
   totalPages!: number;
   totalElements!: number;
   last!: boolean;
@@ -20,7 +20,7 @@ export class Sort {
   empty!: boolean;
 }
 
-export class Pageable {
+export class Paginator {
   sort!: Sort;
   offset!: number;
   pageSize!: number;
